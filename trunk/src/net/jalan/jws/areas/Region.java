@@ -5,7 +5,7 @@ import net.jalan.jws.areas.Prefecture;
 public class Region extends Area {
 	public Prefecture[] prefectures;
 	public Region(String code) {
-		switch(code):
+		switch(code) {
 			case "01": n = "北海道"; break;
 			case "05": n = "東北"; break;
 			case "10": n = "北関東"; break;
@@ -19,6 +19,7 @@ public class Region extends Area {
 			case "50": n = "九州"; break;
 			case "55": n = "沖縄"; break;
 			default: /* invalid code */ return; break;
+		}
 	}
 	this.code = code;
 	String n;
