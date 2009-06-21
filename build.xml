@@ -57,6 +57,7 @@
          This will ensure that the properties are setup correctly but that your customized
          targets are used.
     -->
+    <!--
     <target name="compile" depends="dirs, resource-src, aidl">
         <javac encoding="UTF-8" target="1.5" debug="true" extdirs="" srcdir="." destdir="bin/classes" bootclasspath="${sdk-location}/platforms/android-1.5/android.jar">
             <classpath>
@@ -64,5 +65,6 @@
             </classpath>
         </javac>
     </target>
+    -->
     <setup />
 </project>

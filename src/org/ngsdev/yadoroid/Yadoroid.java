@@ -6,13 +6,12 @@ import android.widget.ListView;
 import android.util.Log;
 import net.jalan.jws.search.AreaSearch;
 
-public class Yadoroid extends Activity
-{
+public class Yadoroid extends Activity {
 	private static final String TAG = "MyActivity";
 	public static final String APIKEY = "leo11111317351";
+	private AreaSearch areaSearch;
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -22,10 +21,7 @@ public class Yadoroid extends Activity
         ListView lv = (ListView) findViewById(android.R.id.list);
         lv.setAdapter(adapter);
         
-        AreaSearch yadoSearch = new AreaSearch(APIKEY);
-        
-        
-        Log.v(TAG, yadoSearch.apiKey);
-
+        areaSearch = new AreaSearch(APIKEY);
+        Log.v(TAG, areaSearch.apiKey);
     }
 }
