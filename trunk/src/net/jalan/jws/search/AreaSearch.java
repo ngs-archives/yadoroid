@@ -1,9 +1,13 @@
 package net.jalan.jws.search;
-import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import net.jalan.jws.search.APIRequest;
 
 public class AreaSearch {
-	public String apiKey;
-	public AreaSearch(String apiKey) {
-		this.apiKey = apiKey;
+	public APIRequest request;
+	public AreaSearch() {
+		request = new APIRequest(APIRequest.AREA);
+	}
+	public void init() {
+		request.connect();
 	}
 }
