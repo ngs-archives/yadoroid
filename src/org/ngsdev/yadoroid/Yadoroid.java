@@ -5,23 +5,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.util.Log;
 import net.jalan.jws.search.AreaSearch;
+import net.jalan.jws.search.APIRequest;
 
 public class Yadoroid extends Activity {
 	private static final String TAG = "MyActivity";
 	public static final String APIKEY = "leo11111317351";
 	private AreaSearch areaSearch;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-        	this, android.R.layout.simple_list_item_1,
-        	new String[] { "Hoge", "Foo", "Bar" }
-        );
-        ListView lv = (ListView) findViewById(android.R.id.list);
-        lv.setAdapter(adapter);
-        
-        areaSearch = new AreaSearch(APIKEY);
-        Log.v(TAG, areaSearch.apiKey);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+			this, android.R.layout.simple_list_item_1,
+			new String[] { "Hoge", "Foo", "Bar" }
+		);
+		ListView lv = (ListView) findViewById(android.R.id.list);
+		lv.setAdapter(adapter);
+		APIRequest.apiKey = APIKEY;
+		areaSearch = new AreaSearch();
+		areaSearch.init();
+	}
 }
