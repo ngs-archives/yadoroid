@@ -1,7 +1,4 @@
 package net.jalan.jws.search;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.io.InputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.xml.parsers.DocumentBuilder;
@@ -11,6 +8,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import net.it4myself.util.RestfulClient;
+
+
 
 public class APIRequest {
 	static public final String VERSION = "V1";
@@ -24,7 +23,6 @@ public class APIRequest {
 	static public String userAgent = "net.jalan.jws.search.APIRequest";
 	static public String apiKey = "";
 	//
-	public URL url = null;
 	public String type;
 	public HashMap param;
 	public APIRequest(String type,HashMap<String,String> param) {

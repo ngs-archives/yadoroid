@@ -15,14 +15,14 @@ public class Yadoroid extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-			this, android.R.layout.simple_list_item_1,
-			new String[] { "Hoge", "Foo", "Bar" }
-		);
-		ListView lv = (ListView) findViewById(android.R.id.list);
-		lv.setAdapter(adapter);
 		APIRequest.apiKey = APIKEY;
 		areaSearch = new AreaSearch();
 		areaSearch.init();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+			this, android.R.layout.simple_list_item_1,
+			areaSearch.regions.getNames()
+		);
+		ListView lv = (ListView) findViewById(android.R.id.list);
+		lv.setAdapter(adapter);
 	}
 }
