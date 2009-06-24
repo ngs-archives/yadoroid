@@ -8,9 +8,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import net.it4myself.util.RestfulClient;
-
-
-
 public class APIRequest {
 	static public final String VERSION = "V1";
 	static public final String HOST = "http://jws.jalan.net/";
@@ -19,10 +16,8 @@ public class APIRequest {
 	static public final String STOCK = "APIAdvance/StockSearch/";
 	static public final String AREA = "APICommon/AreaSearch/";
 	static public final String ONSEN = "APICommon/OnsenSearch/";
-	//
 	static public String userAgent = "net.jalan.jws.search.APIRequest";
 	static public String apiKey = "";
-	//
 	public String type;
 	public HashMap param;
 	public APIRequest(String type,HashMap<String,String> param) {

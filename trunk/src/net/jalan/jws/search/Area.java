@@ -7,7 +7,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-import android.util.Log;
 
 public class Area {
 	public static final String AREA = "Area";
@@ -17,9 +16,6 @@ public class Area {
 	public static final String SAREA = "SmallArea";
 	public static final String CODE = "cd";
 	public static final String NAME = "name";
-	
-	private static final String TAG = "MyActivity";
-	
 	public String code;
 	public String name;
 	public String type;

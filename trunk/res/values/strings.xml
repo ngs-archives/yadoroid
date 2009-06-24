@@ -2,5 +2,7 @@
 <resources>
     <string name="app_name">宿ろいど</string>
     <string name="back">戻る</string>
-    <string name="loading">読込中</string>
+    <string name="progress_connect">通信中</string>
+    <string name="progress_areaapi">エリア一覧を取得しています</string>
+    <string name="progress_hotelapi">宿を検索しています</string>
 </resources>
