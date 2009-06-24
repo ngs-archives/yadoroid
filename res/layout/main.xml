@@ -4,28 +4,6 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<LinearLayout
-		android:id="@+id/navigation"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:visibility="gone">
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			android:id="@+id/navi_button1" />
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			android:id="@+id/navi_button2" />
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			android:id="@+id/navi_button3" />
-	</LinearLayout>
 	<ListView
 		android:id="@+id/list_view"
 		android:layout_width="fill_parent"
