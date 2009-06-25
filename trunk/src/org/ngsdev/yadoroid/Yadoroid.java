@@ -1,4 +1,5 @@
 package org.ngsdev.yadoroid;
+import java.util.HashMap;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -44,7 +45,6 @@ public class Yadoroid extends Activity {
 		if(currentArea!=null) {
 			log("onCreate"+currentArea.name);
 			activeArea = currentArea;
-			setTitle(mode==MODE_TOP?getString(R.string.app_name):currentArea.name);
 			if(mode==MODE_SAREA) showHotels();
 			else showList();
 		} else {
@@ -55,6 +55,7 @@ public class Yadoroid extends Activity {
 		super.onResume();
 		if(activeArea!=null) {
 			currentArea = activeArea;
+			setTitle(currentArea.type.equals(Area.AREA)?getString(R.string.app_name):currentArea.name);
 		}
 		log("onResume");
 	}
@@ -103,7 +104,9 @@ public class Yadoroid extends Activity {
 		log("hotelLoaded");
 	}
 	private void showHotels() {
-		hotelSearch = new HotelSearch(currentArea.code,true);
+		HashMap param = new HashMap();
+		param.put("s_area",currentArea.code);
+		hotelSearch = new HotelSearch(true);
 		showProgress(new Runnable(){
 			public void run() {
 				hotelSearch.request();
