@@ -5,7 +5,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.tan;
-import android.graphics.Point;
+import com.google.android.maps.GeoPoint;
 public class UTMUtil {
 	private static final double a = 6378137;
 	private static final double f = 1.0 / 298.257222101;
@@ -26,7 +26,7 @@ public class UTMUtil {
 	private static final double f_ = 693 / 131072 * e10;
 	private static final double e_2 = e2 / (1 - e2);
 	private static final double m0 = .9996;
-	public static Point toUTM(final double longitude, final double latitude) {
+	public static GeoPoint toUTM(final double longitude, final double latitude) {
 		final double lambda = longitude * PI / 180;
 		final double phi = latitude * PI / 180;
 		final double largeB = a
@@ -60,9 +60,9 @@ public class UTMUtil {
 				* l8 / 40320 * sinPhi * pow(cos(phi * (1385 - 3111 * t2 + 543 * t4 - t6)), 7);
 		final double largeX = m0 * x + 500000;
 		final double largeY = m0 * y;
-		return new Point(largeX, largeY);
+		return new GeoPoint(largeX, largeY);
 	}
-	public static Point toUTM(final Point point) {
-		return toUTM(point.getX(), point.getY());
+	public static GeoPoint toUTM(final GeoPoint point) {
+		return toUTM(point.x, point.y);
 	}
 }
