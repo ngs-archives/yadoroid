@@ -1,5 +1,6 @@
 package net.jalan.jws.search;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import android.graphics.Point;
 import java.net.URLEncoder;
 import java.net.URL;
@@ -7,8 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import net.jalan.jws.search.Area;
-import net.jalan.jws.search.HotelPicture;
-import map.WGSUtil;
+import net.jalan.jws.search.LatLong;
+import net.jalan.jws.search.hotel.HotelPicture;
 public class Hotel {
 	static public final String BASE_URI = "http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=2462325&pid=878248727&vc_url=";
 	static public final String BEACON_URI = "http://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=2462325&pid=878248727";
@@ -28,21 +29,29 @@ public class Hotel {
 	public LinkedList<String> access;
 	public String checkInTime;
 	public String checkOutTime;
-	public Point latlng;
+	public LatLong latlng;
 	public int sampleRateFrom;
 	public Date lastUpdate;
-	
-	//
 	private Node node;
 	public Hotel(Node node) {
 		this.node = node;
-		
+		final NodeList nodes = node.getChildNodes();
+		final int len = nodes.getLength();
+		for(int i=0;i<len;++i) {
+			Node n = nodes.item(i);
+			String nm = n.getNodeName();
+			if(nm.equals("HotelID"))
+				id = getStrValue(n);
+			if(nm.equals("HotelName"))
+				name = getStrValue(n);
+				
+		}
 	}
-	private String getString(String n) {
-		return "";
+	private String getStrValue(Node n) {
+		return n.getNodeValue();
 	}
-	private int getInteger(String n) {
-		return 1;
+	private int getIntValue(Node n) {
+		return new Integer(n.getNodeValue());
 	}
 }
 

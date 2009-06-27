@@ -1,4 +1,4 @@
-package map;
+package org.ngsdev.android.map;
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
@@ -6,7 +6,9 @@ import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.tan;
 import com.google.android.maps.GeoPoint;
+import android.graphics.Point;
 public class UTMUtil {
+	private static final int E6 = 1000000;
 	private static final double a = 6378137;
 	private static final double f = 1.0 / 298.257222101;
 	private static final double e2 = 2 * f - f * f;
@@ -26,9 +28,9 @@ public class UTMUtil {
 	private static final double f_ = 693 / 131072 * e10;
 	private static final double e_2 = e2 / (1 - e2);
 	private static final double m0 = .9996;
-	public static GeoPoint toUTM(final double longitude, final double latitude) {
-		final double lambda = longitude * PI / 180;
-		final double phi = latitude * PI / 180;
+	public static Point toUTM(final int longitude, final int latitude) {
+		final double lambda = longitude/E6 * PI / 180;
+		final double phi = latitude/E6 * PI / 180;
 		final double largeB = a
 				* (1 - e2)
 				* (a_ * phi - b_ / 2 * sin(2 * phi) + c_ / 4 * sin(4 * phi) - d_ / 6 * sin(6 * phi)
@@ -58,11 +60,13 @@ public class UTMUtil {
 				* pow(cos(phi * (5 - t2 + 9 * eta2 + 4 * eta4)), 3) + largeN * l6 / 720 * sinPhi
 				* pow(cos(phi * (61 - 58 * t2 + t4 + 270 * eta2 - 330 * t2 * eta2)), 5) + largeN
 				* l8 / 40320 * sinPhi * pow(cos(phi * (1385 - 3111 * t2 + 543 * t4 - t6)), 7);
-		final double largeX = m0 * x + 500000;
-		final double largeY = m0 * y;
-		return new GeoPoint(largeX, largeY);
+		final double largeX = (m0 * x + 500000) * E6;
+		final double largeY = m0 * y * E6;
+		final int intX = (int) largeX;
+		final int intY = (int) largeY;
+		return new Point(intX, intY);
 	}
-	public static GeoPoint toUTM(final GeoPoint point) {
+	public static Point toUTM(final Point point) {
 		return toUTM(point.x, point.y);
 	}
 }

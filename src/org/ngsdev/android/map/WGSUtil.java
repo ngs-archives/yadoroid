@@ -1,7 +1,8 @@
-package map;
+package org.ngsdev.android.map;
 import com.google.android.maps.GeoPoint;
+import android.graphics.Point;
 public class WGSUtil {
-	public static GeoPoint tokyoToWGS(final double longitude,final double latitude) {
+	public static GeoPoint tokyoToWGS(final int longitude,final int latitude) {
 		final double pi = Math.PI;
 		final double rd = pi / 180;
 		double b = latitude;
@@ -44,7 +45,7 @@ public class WGSUtil {
 		return new GeoPoint(new Integer(Double.toString(retX)), new Integer(Double.toString(retY)));
 	}
 	
-	final GeoPoint tokyoToWGS(final GeoPoint point) {
+	final GeoPoint tokyoToWGS(final Point point) {
 		return tokyoToWGS(point.x, point.x);
 	}
 }
