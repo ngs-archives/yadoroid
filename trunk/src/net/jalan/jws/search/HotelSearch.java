@@ -9,7 +9,7 @@ public class HotelSearch {
 	public String sarea;
 	public Boolean advance = false;
 	public LinkedHashMap<String,Hotel> hotels;
-	private APIRequest request;
+	private APIRequest _request;
 	public int total = 0;
 	public int count = 0;
 	public int start;
@@ -25,8 +25,8 @@ public class HotelSearch {
 	public void request(HashMap params,int start) {
 		this.params = params;
 		this.start = start>1?start:1;
-		request = new APIRequest(APIRequest.HOTEL_ADVANCE,params);
-		Document doc = request.connect();
+		_request = new APIRequest(APIRequest.HOTEL_ADVANCE,params);
+		Document doc = _request.connect();
 		NodeList list = doc.getElementsByTagName("Hotel");
 		int len = list.getLength();
 		hotels = new LinkedHashMap<String,Hotel>();

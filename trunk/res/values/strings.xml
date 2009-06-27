@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">宿ろいど</string>
+    <string name="select_area">エリア選択</string>
+    <string name="list">宿一覧</string>
     <string name="back">戻る</string>
     <string name="progress_connect">通信中</string>
     <string name="progress_areaapi">エリア一覧を取得しています</string>
