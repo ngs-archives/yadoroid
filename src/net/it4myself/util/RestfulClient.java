@@ -160,7 +160,7 @@ public class RestfulClient {
 				new UsernamePasswordCredentials(basicAuthUsername, basicAuthPassword));
 		}
 		HttpResponse response = null;
-		
+		Log.v(TAG,method.getURI().toString());
 		try {
 			response = client.execute(method);
 			int statuscode = response.getStatusLine().getStatusCode();
