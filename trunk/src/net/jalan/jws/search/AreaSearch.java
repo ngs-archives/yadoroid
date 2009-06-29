@@ -10,9 +10,14 @@ public class AreaSearch {
 	public static Area regions;
 	public AreaSearch() {
 	}
-	public void init() {
+	public void init() throws Exception {
 		request = new APIRequest(APIRequest.AREA);
-		Document doc = request.connect();
-		regions = new Area(doc);
+		final Document doc;
+		try {
+			doc = request.connect();
+		} catch(Exception e) {
+			throw e;
+		}
+		if(doc!=null) regions = new Area(doc);
 	}
 }

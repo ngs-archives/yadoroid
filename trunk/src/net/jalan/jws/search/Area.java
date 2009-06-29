@@ -33,7 +33,11 @@ public class Area {
 	}
 	public Area(Document doc) {
 		type = AREA;
-		children = getList(doc.getElementsByTagName(Area.REGION));
+		try {
+			children = getList(doc.getElementsByTagName(Area.REGION));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	private LinkedHashMap getList(NodeList list) {
 		String childName = type.equals(Area.AREA)?

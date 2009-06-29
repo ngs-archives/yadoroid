@@ -1,7 +1,8 @@
 package org.ngsdev.yadoroid;
 import java.util.HashMap;
-import android.app.Activity;
 import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -10,7 +11,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.LinearLayout;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import net.jalan.jws.search.Area;
 import net.jalan.jws.search.AreaSearch;
@@ -33,7 +33,7 @@ public class Yadoroid extends AbstractYadoroid {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.areas);
 		list = (ListView) findViewById(R.id.list_view);
 		if(currentArea!=null) {
 			log("onCreate"+currentArea.name);
@@ -50,7 +50,7 @@ public class Yadoroid extends AbstractYadoroid {
 			setTitle((!currentArea.type.equals(Area.AREA)?currentArea.name+" | ":"")+getString(R.string.select_area));
 		}
 	}
-	private void init() {
+	public void init() {
 		APIRequest.apiKey = APIKEY;
 		areaSearch = new AreaSearch();
 		if(areaSearch.regions!=null) {
@@ -59,8 +59,18 @@ public class Yadoroid extends AbstractYadoroid {
 		}
 		showProgress(new Runnable(){
 			public void run() {
-				areaSearch = new AreaSearch();
-				areaSearch.init();
+				try {
+					areaSearch = new AreaSearch();
+					areaSearch.init();
+				} catch(Exception e) {
+					alert(new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int whichButton) {
+							init();
+						}
+					},R.string.alert_connection,R.string.alert_message,R.string.retry);
+					e.printStackTrace();
+					return;
+				}
 				currentArea = areaSearch.regions;
 				activeArea = currentArea;
 				showList();
@@ -73,8 +83,12 @@ public class Yadoroid extends AbstractYadoroid {
 	}
 	public void setList(Area area) {
 		final Intent intent;
+		final Bundle extras = new Bundle();
 		if(area.type.equals(Area.SAREA)) {
 			intent = new Intent(Yadoroid.this,org.ngsdev.yadoroid.YadoroidResults.class);
+			extras.putString(EXTRA_KEY_SAREA_CODE,area.code);
+			extras.putString(EXTRA_KEY_SAREA_NAME,area.name);
+			intent.putExtras(extras);
 		} else {
 			intent = new Intent(Yadoroid.this,org.ngsdev.yadoroid.Yadoroid.class);
 			currentArea = area;
