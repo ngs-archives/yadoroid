@@ -89,12 +89,12 @@ public class HotelSearchOptions {
 	public Boolean childMeal=false;
 	public Boolean childBed=false;
 	//
-	public int pict_size = PictSize.DEFAULT;
+	public int pictSize = PictSize.DEFAULT;
 	public int picts=1;
 	public int order = HotelOrderType.DEFAULT;
 	public int start=1;
 	public int count=10;
-	public int xml_ptn=HotelXMLPattern.STANDARD;
+	public int xmlPattern=HotelXMLPattern.STANDARD;
 	public HotelSearchOptions(){
 		
 	}
@@ -161,7 +161,7 @@ public class HotelSearchOptions {
 		map.put("o_pool",outerPool?TRUE:FALSE);
 		map.put("parking",parking?TRUE:FALSE);
 		map.put("pet",pet?TRUE:FALSE);
-		map.put("pict_size",Integer.toString(pict_size));
+		map.put("pict_size",Integer.toString(pictSize));
 		map.put("picts",Integer.toString(picts));
 		map.put("p_pong",pingPong?TRUE:FALSE);
 		map.put("p_field",playField?TRUE:FALSE);
@@ -187,7 +187,7 @@ public class HotelSearchOptions {
 		map.put("tri_room",tripleRoom?TRUE:FALSE);
 		map.put("twn_room",twinRoom?TRUE:FALSE);
 		map.put("v_bath",vBath?TRUE:FALSE);
-		map.put("xml_ptn",Integer.toString(xml_ptn));
+		map.put("xml_ptn",Integer.toString(xmlPattern));
 		return map;
 	}	
 

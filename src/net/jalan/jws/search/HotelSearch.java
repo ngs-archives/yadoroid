@@ -3,6 +3,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.HashMap;
 import net.jalan.jws.search.APIRequest;
+import net.jalan.jws.search.hotel.HotelSearchOptions;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -15,19 +16,20 @@ public class HotelSearch {
 	public int total = 0;
 	public int count = 0;
 	public int start;
-	public HashMap params;
+	public HotelSearchOptions params;
 	public HotelSearch() {
 	}
 	public HotelSearch(Boolean advance) {
 		this.advance = advance;
 	}
 	public void request() { request(1); }
-	public void request(int start) { request(new HashMap(),start); }
-	public void request(HashMap params) { request(params,1); }
-	public void request(HashMap params,int start) {
-		this.params = params;
+	public void request(int start) { request(new HotelSearchOptions(),start); }
+	public void request(HotelSearchOptions params) { request(params,1); }
+	public void request(HotelSearchOptions params,int start) {
 		this.start = start>1?start:1;
-		_request = new APIRequest(APIRequest.HOTEL_ADVANCE,params);
+		params.start = start;
+		this.params = params;
+		_request = new APIRequest(APIRequest.HOTEL_ADVANCE,params.getHashMap());
 		Document doc = _request.connect();
 		NodeList list = doc.getElementsByTagName("Hotel");
 		int len = list.getLength();

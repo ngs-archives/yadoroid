@@ -10,6 +10,8 @@ import android.widget.ListView;
 import net.jalan.jws.search.Hotel;
 import net.jalan.jws.search.HotelSearch;
 import net.jalan.jws.search.hotel.HotelSearchOptions;
+import net.jalan.jws.search.hotel.HotelXMLPattern;
+import net.jalan.jws.search.hotel.PictSize;
 import org.ngsdev.yadoroid.Yadoroid;
 
 public class YadoroidResults extends AbstractYadoroid {
@@ -37,12 +39,17 @@ public class YadoroidResults extends AbstractYadoroid {
 		hotelSearch = new HotelSearch(true);
 		final HotelSearchOptions options = new HotelSearchOptions();
 		options.smallArea = sarea;
+		options.pictSize = PictSize.SS;
 		options.start = start;
-		final HashMap params = options.getHashMap();
+		options.xmlPattern = HotelXMLPattern.HAS_PRICE;
+		final YadoroidResults context = this;
 		showProgress(new Runnable(){
 			public void run() {
 				try {
-					hotelSearch.request(params);
+					hotelSearch.request(options);
+					final HotelListAdapter adp = new HotelListAdapter(context,hotelSearch);
+					list.setAdapter(adp);
+					hideProgress();
 				} catch(Exception e) {
 					alert(new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int whichButton) {
@@ -52,15 +59,8 @@ public class YadoroidResults extends AbstractYadoroid {
 					e.printStackTrace();
 					return;
 				}
-				setHotels();
 			}
 		},R.string.progress_hotelapi);
-	}
-	private void setHotels() {
-		final HotelListAdapter adp = new HotelListAdapter(this,hotelSearch);
-		list.setAdapter(adp);
-		hideProgress();
-		log("hotelLoaded");
 	}
 	private void openDetail() {
 		
