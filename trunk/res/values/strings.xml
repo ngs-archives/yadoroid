@@ -11,4 +11,6 @@
     <string name="alert_message">通信エラーが発生しました</string>
     <string name="retry">再試行</string>
     <string name="min_price">最安価格: %s円~</string>
+    <string name="progress_hoteldetail">宿詳細を取得しています</string>
+    <string name="hotel_detail">宿詳細</string>
 </resources>

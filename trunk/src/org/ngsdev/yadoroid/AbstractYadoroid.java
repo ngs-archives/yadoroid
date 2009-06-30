@@ -12,6 +12,8 @@ abstract public class AbstractYadoroid extends Activity {
 	private static final String TAG = "Yadoroid";
 	public static final String EXTRA_KEY_SAREA_CODE = "sarea.code";
 	public static final String EXTRA_KEY_SAREA_NAME = "sarea.name";
+	public static final String EXTRA_KEY_HOTEL_ID   = "hotel.code";
+	public static final String EXTRA_KEY_HOTEL_NAME = "hotel.name";
 	public static final String EXTRA_KEY_START = "start";
 	private ProgressDialog progressDialog;
 	private AlertDialog alertDialog;
