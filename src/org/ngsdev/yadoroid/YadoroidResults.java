@@ -6,7 +6,11 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import net.jalan.jws.search.Hotel;
 import net.jalan.jws.search.HotelSearch;
 import net.jalan.jws.search.hotel.HotelSearchOptions;
@@ -62,7 +66,14 @@ public class YadoroidResults extends AbstractYadoroid {
 			}
 		},R.string.progress_hotelapi);
 	}
-	private void openDetail() {
-		
+	public void openDetail(String id) {
+		final Hotel hotel = hotelSearch.getHotelById(id);
+		final Intent intent = new Intent(YadoroidResults.this,org.ngsdev.yadoroid.YadoroidDetail.class);
+		final Bundle extras = new Bundle();
+		extras.putString(EXTRA_KEY_HOTEL_ID  ,hotel.id);
+		extras.putString(EXTRA_KEY_HOTEL_NAME,hotel.name);
+		intent.putExtras(extras);
+		intent.setAction(Intent.ACTION_VIEW);
+		startActivity(intent);
 	}
 }
