@@ -1,9 +1,15 @@
 package net.jalan.jws.search;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import java.net.URLEncoder;
 import java.net.URL;
+import java.net.URLConnection;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -44,7 +50,6 @@ public class Hotel {
 	public Hotel(Node node) {
 		this.node = node;
 		parse(node);
-		Yadoroid.log(name);
 	}
 	private void parse(Node node) {
 		final NodeList nodes = node.getChildNodes();
@@ -81,7 +86,6 @@ public class Hotel {
 			else if(nm.equals("HotelDetailURL"))
 				try {
 					url = new URL(BASE_URI+URLEncoder.encode(getStrValue(n)));
-					Yadoroid.log(url.toString());
 				} catch(Exception e) {}
 			else if(nm.equals("HotelCatchCopy"))
 				catchCopy = getStrValue(n);
@@ -119,10 +123,41 @@ public class Hotel {
 		return sb.toString();
 	}
 	public static int getIntValue(Node n) {
-		return new Integer(getStrValue(n));
+		try {
+			return new Integer(getStrValue(n));
+		} catch(Exception e) {
+			return 0;
+		}
+		
 	}
 	public static double getDoubleValue(Node n) {
-		return new Double(getStrValue(n));
+		try {
+			return new Double(getStrValue(n));
+		} catch(Exception e) {
+			return 0;
+		}
 	}
+	
+	public Bitmap getImageBitmap() {
+		return getImageBitmap(0);
+	}
+	
+	public Bitmap getImageBitmap(int position) {
+		if(pictures.size()==0) return null;
+		URL aURL = pictures.get(position).url;
+		if(aURL==null) return null;
+		Bitmap bm = null; 
+		try {
+			URLConnection conn = aURL.openConnection(); 
+			conn.connect(); 
+			InputStream is = conn.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			bm = BitmapFactory.decodeStream(bis);
+			bis.close(); 
+			is.close(); 
+		} catch (IOException e) {
+		} 
+		return bm; 
+	} 
 }
 

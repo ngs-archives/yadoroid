@@ -47,6 +47,7 @@ abstract public class AbstractYadoroid extends Activity {
 		alertDialog = ad.create();
 		ad.show();
 	}
+
 	public static void log(String text) {
 		Log.v(TAG,text);
 	}
