@@ -15,19 +15,20 @@ public class HotelSearch {
 	private APIRequest _request;
 	public int total = 0;
 	public int count = 0;
-	public int start;
+	public int start = 1;
+	public int nextStart = 0;
+	public int prevStart = 0;
+	public int nextCount = 0;
+	public int prevCount = 0;
+	public float apiVersion = 0;
 	public HotelSearchOptions params;
 	public HotelSearch() {
 	}
 	public HotelSearch(Boolean advance) {
 		this.advance = advance;
 	}
-	public void request() { request(1); }
-	public void request(int start) { request(new HotelSearchOptions(),start); }
-	public void request(HotelSearchOptions params) { request(params,1); }
-	public void request(HotelSearchOptions params,int start) {
-		this.start = start>1?start:1;
-		params.start = start;
+	public void request() { request(new HotelSearchOptions()); }
+	public void request(HotelSearchOptions params) {
 		this.params = params;
 		_request = new APIRequest(APIRequest.HOTEL_ADVANCE,params.getHashMap());
 		Document doc = _request.connect();
@@ -43,6 +44,17 @@ public class HotelSearch {
 				hotelList.add(h);
 			}
 		}
+		total = Hotel.getIntValue(doc.getElementsByTagName("NumberOfResults").item(0));
+		count = params.count;
+		start = params.start;
+		nextStart = start+count;
+		if(nextStart>total) nextStart = 0;
+		nextCount = total-nextStart+1;
+		if(nextCount>count) nextCount = count;
+		else if(nextCount<0) nextCount = 0;
+		prevStart = start>count?start-count:0;
+		prevCount = start>count?count:0;
+		apiVersion = Hotel.getFloatValue(doc.getElementsByTagName("APIVersion").item(0));
 	}
 	public Hotel getHotelById(String id) {
 		return hotels.get(id);
@@ -50,7 +62,7 @@ public class HotelSearch {
 	public Hotel item(int position) {
 		return hotelList.get(position);
 	}
-	public int getLength() {
+	public int size() {
 		return hotelList.size();
 	}
 }

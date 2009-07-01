@@ -6,9 +6,42 @@
 
 	<ListView
 		android:id="@+id/list_view"
+		android:layout_weight="10"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:drawSelectorOnTop="false"/>
+
+	<LinearLayout
+		android:id="@+id/page_navigation"
+		android:orientation="horizontal"
+		android:visibility="gone"
+		android:layout_alignParentBottom="true"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<RelativeLayout
+			android:baselineAligned="false"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<Button
+				android:id="@+id/prev_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_marginLeft="5px"
+				android:visibility="gone"
+				android:baselineAligned="false"
+				/>
+			<Button
+				android:id="@+id/next_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="5px"
+				android:visibility="gone"
+				android:baselineAligned="false"
+				/>
+		</RelativeLayout>
+	</LinearLayout>
 
 </LinearLayout>
 

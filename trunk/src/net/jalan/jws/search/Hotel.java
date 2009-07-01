@@ -1,15 +1,9 @@
 package net.jalan.jws.search;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import java.net.URLEncoder;
 import java.net.URL;
-import java.net.URLConnection;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -43,7 +37,7 @@ public class Hotel {
 	public LatLong latlng;
 	public int sampleRateFrom;
 	public int ratingCount;
-	public double rate;
+	public float rate;
 	public Date lastUpdate;
 	public CreditCard creditCard;
 	private Node node;
@@ -99,14 +93,14 @@ public class Hotel {
 				checkInTime = getStrValue(n);
 			else if(nm.equals("CheckOutTime"))
 				checkOutTime = getStrValue(n);
-			else if(nm.equals("X"))
+			else if(nm.equals("X")&&getStrValue(n)!="")
 				latlng = new LatLong(new Integer(getStrValue(n)),new Integer(getStrValue(n.getNextSibling())));
 			else if(nm.equals("SampleRateFrom"))
 				sampleRateFrom = getIntValue(n);
 			else if(nm.equals("NumberOfRatings"))
 				ratingCount = getIntValue(n);
 			else if(nm.equals("Rating"))
-				rate = getDoubleValue(n);
+				rate = getFloatValue(n);
 			else if(nm.equals("CreditCard"))
 				creditCard = new CreditCard(n);
 			else if(nm.equals("Plan"))
@@ -130,34 +124,12 @@ public class Hotel {
 		}
 		
 	}
-	public static double getDoubleValue(Node n) {
+	public static float getFloatValue(Node n) {
 		try {
-			return new Double(getStrValue(n));
+			return new Float(getStrValue(n));
 		} catch(Exception e) {
 			return 0;
 		}
 	}
-	
-	public Bitmap getImageBitmap() {
-		return getImageBitmap(0);
-	}
-	
-	public Bitmap getImageBitmap(int position) {
-		if(pictures.size()==0) return null;
-		URL aURL = pictures.get(position).url;
-		if(aURL==null) return null;
-		Bitmap bm = null; 
-		try {
-			URLConnection conn = aURL.openConnection(); 
-			conn.connect(); 
-			InputStream is = conn.getInputStream();
-			BufferedInputStream bis = new BufferedInputStream(is);
-			bm = BitmapFactory.decodeStream(bis);
-			bis.close(); 
-			is.close(); 
-		} catch (IOException e) {
-		} 
-		return bm; 
-	} 
 }
 
