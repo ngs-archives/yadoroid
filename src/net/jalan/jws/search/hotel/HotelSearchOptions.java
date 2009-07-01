@@ -2,7 +2,7 @@ package net.jalan.jws.search.hotel;
 import java.util.HashMap;
 import android.graphics.Point;
 import net.jalan.jws.search.hotel.HotelType;
-import net.jalan.jws.search.HotelXMLPattern;
+import net.jalan.jws.search.hotel.HotelXMLPattern;
 import net.jalan.jws.search.hotel.PictSize;
 public class HotelSearchOptions {
 	public static final String TRUE = "1";

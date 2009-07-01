@@ -40,8 +40,19 @@ public class HotelListAdapter extends BaseAdapter {
 		//
 		hotelName.setText(h.name);
 		int rate = h.sampleRateFrom;
-		if(rate>0)
-			minPrice.setText(h.type+"/"+String.format(context.getString(R.string.min_price),Integer.toString(rate)));
+		StringBuilder sb = new StringBuilder("");
+		if(h.type!="") {
+			sb.append(h.type);
+		}
+		if(rate>0) {
+			if(sb.length()>0) sb.append("/");
+			sb.append(
+				context.getString(R.string.sample_rate_from)+": "+
+				String.format(context.getString(R.string.min_price),Integer.toString(rate))
+			);
+		}
+		if(sb.length()>0) 
+			minPrice.setText(sb.toString());
 		else
 			minPrice.setVisibility(View.GONE);
 		String ccp = h.catchCopy;
@@ -49,20 +60,12 @@ public class HotelListAdapter extends BaseAdapter {
 			catchCopy.setText(ccp);
 		else
 			catchCopy.setVisibility(View.GONE);
-		
-		LinkedList<HotelPicture> picts = h.pictures;
-		Bitmap bmp = h.getImageBitmap();
-		if(bmp!=null)
-			hotelImage.setImageBitmap(bmp);
-		else
-			hotelImage.setVisibility(View.GONE);
-		
+		if(h.pictures.size()>0) h.pictures.get(0).load(hotelImage);
 		v.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v) {
 				results.openDetail(h.id);
 			}
 		});
-		
 		return v;
 	}
 	public Hotel getItem(int position) {
@@ -72,7 +75,7 @@ public class HotelListAdapter extends BaseAdapter {
 		return new Long(getItem(position).id);
 	}
 	public int getCount() {
-		return hotelSearch.getLength();
+		return hotelSearch.size();
 	}
 
 }
