@@ -58,6 +58,12 @@ public class YadoroidResults extends AbstractYadoroid {
 	public void onRequestComplete() {
 		adapter = new HotelListAdapter(YadoroidResults.this,hotelSearch);
 		list.setAdapter(adapter);
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				openDetail(hotelSearch.item(position).id);
+			}
+		});
+		
 		nextButton = (Button) findViewById(R.id.next_button);
 		prevButton = (Button) findViewById(R.id.prev_button);
 		pageNavigation = (LinearLayout) findViewById(R.id.page_navigation);
