@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import net.jalan.jws.search.Area;
 import net.jalan.jws.search.AreaSearch;
-import net.jalan.jws.search.APIRequest;
 import net.jalan.jws.search.Hotel;
 import net.jalan.jws.search.HotelSearch;
 
 public class Yadoroid extends AbstractYadoroid {
-	public static final String APIKEY = "leo11111317351";
 	public static final int MODE_TOP = 0;
 	public static final int MODE_REGION = 1;
 	public static final int MODE_PREFECTURE = 2;
@@ -30,7 +28,6 @@ public class Yadoroid extends AbstractYadoroid {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.areas);
 		list = (ListView) findViewById(R.id.list_view);
-		APIRequest.apiKey = APIKEY;
 		if(currentArea!=null) {
 			log("onCreate"+currentArea.name);
 			activeArea = currentArea;

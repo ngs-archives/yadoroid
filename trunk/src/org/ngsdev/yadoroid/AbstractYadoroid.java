@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import net.jalan.jws.search.Area;
+import net.jalan.jws.search.APIRequest;
 abstract public class AbstractYadoroid extends Activity {
+	public static final String APIKEY = "leo11111317351";
 	private static final String TAG = "Yadoroid";
 	public static final String EXTRA_KEY_SAREA_CODE = "sarea.code";
 	public static final String EXTRA_KEY_SAREA_NAME = "sarea.name";
@@ -25,6 +27,7 @@ abstract public class AbstractYadoroid extends Activity {
 	private int progressMessage;
 	public void onCreate(Bundle savedInstanceState) {
 		log("onCreate");
+		APIRequest.apiKey = APIKEY;
 		super.onCreate(savedInstanceState);
 	}
 	public void onResume() {

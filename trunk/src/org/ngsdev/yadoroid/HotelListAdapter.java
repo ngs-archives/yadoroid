@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.widget.BaseAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.widget.ImageView;
@@ -32,7 +31,6 @@ public class HotelListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final View v = View.inflate(context,R.layout.hotel_item,null);
 		final Hotel h = getItem(position);
-		final YadoroidResults results = (YadoroidResults) context;
 		hotelName = (TextView) v.findViewById(R.id.hotel_name);
 		hotelImage = (ImageView) v.findViewById(R.id.hotel_image);
 		catchCopy = (TextView) v.findViewById(R.id.catch_copy);
@@ -61,11 +59,6 @@ public class HotelListAdapter extends BaseAdapter {
 		else
 			catchCopy.setVisibility(View.GONE);
 		if(h.pictures.size()>0) h.pictures.get(0).load(hotelImage);
-		v.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View v) {
-				results.openDetail(h.id);
-			}
-		});
 		return v;
 	}
 	public Hotel getItem(int position) {
