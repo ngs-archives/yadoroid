@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">宿ろいど</string>
+	<string name="select_area">エリア選択</string>
+	<string name="list">宿一覧</string>
+	<string name="hotel_detail">宿詳細</string>
+	<string name="back">戻る</string>
+	<string name="progress_connect">通信中</string>
+	<string name="progress_areaapi">エリア一覧を取得しています</string>
+	<string name="progress_hotelapi">宿を検索しています</string>
+	<string name="alert_connection">通信エラー</string>
+	<string name="alert_message">通信エラーが発生しました</string>
+	<string name="alert_outofservice">圏外です</string>
+	<string name="retry">再試行</string>
+	<string name="min_price">%s円~</string>
+	<string name="progress_hoteldetail">宿詳細を取得しています</string>
+	<string name="cancel">キャンセル</string>
+	<string name="checkin_time">チェックイン</string>
+	<string name="checkout_time">チェックアウト</string>
+	<string name="creditcard">クレジットカード</string>
+	<string name="sample_rate_from">最安価格</string>
+	<string name="kuchikomi_rating">クチコミ評点</string>
+	<string name="meal">食事</string>
+	<string name="address">住所</string>
+	<string name="postal_mark">〒</string>
+	<string name="go_reserve">この%sを予約する</string>
+	<string name="yado">宿</string>
+	<string name="next_button">次の%s件</string>
+	<string name="prev_button">前の%s件</string>
+</resources>
