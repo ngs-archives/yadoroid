@@ -18,8 +18,8 @@ public class HotelPicture {
 	public HotelPicture(Node xml) {
 		try {
 			url = new URL(xml.getFirstChild().getNodeValue());
+			caption = xml.getNextSibling().getFirstChild().getNodeValue();
 		} catch(Exception e) {}
-		caption = xml.getNextSibling().getFirstChild().getNodeValue();
 	}
 	public Bitmap getBitmap() {
 		return getBitmap(true);
@@ -42,16 +42,20 @@ public class HotelPicture {
 		return bm; 
 	}
 	public void load(final ImageView view) {
+		Bitmap bmp = getBitmap();
+		if(bmp!=null)
+			view.setImageBitmap(bmp);
+		else
+			view.setVisibility(View.GONE);
+	}
+	
+	public void loadAsync(final ImageView view) {
 		final Handler h = new Handler();
 		final Thread t = new Thread(new Runnable(){
 			public void run() {
 				h.post(new Runnable(){
 					public void run() {
-						Bitmap bmp = getBitmap();
-						if(bmp!=null)
-							view.setImageBitmap(bmp);
-						else
-							view.setVisibility(View.GONE);
+						load(view);
 					}
 				});
 			}
