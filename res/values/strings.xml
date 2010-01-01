@@ -4,6 +4,7 @@
 	<string name="select_area">Areas</string>
 	<string name="list">Hotels</string>
 	<string name="hotel_detail">Detail</string>
+	<string name="hotel_map">Map</string>
 	<string name="back">Back</string>
 	<string name="progress_connect">Requesting</string>
 	<string name="progress_areaapi">Fetching Area List</string>
@@ -15,6 +16,7 @@
 	<string name="min_price">%sJPY~</string>
 	<string name="progress_hoteldetail">Requesting Detail Information</string>
 	<string name="cancel">Cancel</string>
+	<string name="access">Access</string>
 	<string name="checkin_time">Check In</string>
 	<string name="checkout_time">Check Out</string>
 	<string name="creditcard">Credit Card</string>
@@ -27,4 +29,7 @@
 	<string name="yado">Hotel</string>
 	<string name="next_button">Next %s</string>
 	<string name="prev_button">Prev %s</string>
+	<string name="no_result_title"></string>
+	<string name="no_result">No result found.</string>
+	<string name="map">View map</string>
 </resources>

@@ -1,8 +1,7 @@
 package org.ngsdev.android.map;
-import com.google.android.maps.GeoPoint;
 import android.graphics.Point;
 public class WGSUtil {
-	public static GeoPoint tokyoToWGS(final int longitude,final int latitude) {
+	public static Point tokyoToWGS(final double longitude, final double latitude) {
 		final double pi = Math.PI;
 		final double rd = pi / 180;
 		double b = latitude;
@@ -39,13 +38,13 @@ public class WGSUtil {
 		//final double dh = dx * cb * cl + dy * cb * sl + dz * sb - da * a / rn
 		//		+ df * bda * rn * sb * sb;
 
-		final double retY = (b + db) / rd;
-		final double retX = (l + dl) / rd;
+		final int retY = Double.valueOf((b + db) / rd*1E6).intValue();
+		final int retX = Double.valueOf((l + dl) / rd*1E6).intValue();
 		//final double height = h + dh;
-		return new GeoPoint(new Integer(Double.toString(retX)), new Integer(Double.toString(retY)));
+		return new Point(retX,retY);
 	}
 	
-	final GeoPoint tokyoToWGS(final Point point) {
+	final Point tokyoToWGS(final Point point) {
 		return tokyoToWGS(point.x, point.x);
 	}
 }

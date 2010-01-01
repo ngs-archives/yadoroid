@@ -21,6 +21,8 @@ abstract public class AbstractYadoroid extends Activity {
 	public static final String EXTRA_KEY_SAREA_NAME = "sarea.name";
 	public static final String EXTRA_KEY_HOTEL_ID   = "hotel.code";
 	public static final String EXTRA_KEY_HOTEL_NAME = "hotel.name";
+	public static final String EXTRA_KEY_HOTEL_LAT  = "hotel.lat";
+	public static final String EXTRA_KEY_HOTEL_LNG  = "hotel.lng";
 	public static final String EXTRA_KEY_START = "start";
 	private ProgressDialog progressDialog;
 	private AlertDialog alertDialog;
@@ -89,10 +91,6 @@ abstract public class AbstractYadoroid extends Activity {
 	}
 	public void init(final int msg) {
 		progressMessage = msg>0?msg:progressMessage;
-		if(!isNetworkAvailable()) {
-			showRetryDialog(R.string.alert_outofservice);
-			return;
-		}
 		showProgress(new Runnable(){
 			public void run() {
 				try {

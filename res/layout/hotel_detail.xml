@@ -84,6 +84,15 @@
 				android:id="@+id/detail_hotel_image"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:visibility="gone"
+				/>
+			<Gallery
+				android:id="@+id/detail_hotel_image_gallery"
+				android:layout_width="fill_parent"
+				android:layout_height="150px"
+				android:animationDuration="500"
+				android:gravity="center"
+				android:spacing="20px"
 				/>
 			<TableLayout
 				android:layout_width="fill_parent"
@@ -102,12 +111,28 @@
 		android:layout_alignParentBottom="true"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
-		<Button android:text="@string/go_reserve"
-				android:id="@+id/go_reserve_button"
+		<RelativeLayout
+			android:baselineAligned="false"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="10px"
-			android:visibility="gone"
-			/>
+			android:layout_height="wrap_content">
+    		<Button android:text="@string/map"
+				android:id="@+id/map_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_marginLeft="5px"
+				android:visibility="gone"
+				android:baselineAligned="false"
+				/>
+    		<Button android:text="@string/go_reserve"
+				android:id="@+id/go_reserve_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="5px"
+				android:visibility="gone"
+				android:baselineAligned="false"
+				/>
+		</RelativeLayout>
 	</LinearLayout>
 </LinearLayout>
