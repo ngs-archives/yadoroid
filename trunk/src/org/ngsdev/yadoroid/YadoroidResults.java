@@ -1,6 +1,7 @@
 package org.ngsdev.yadoroid;
 import java.util.HashMap;
 import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -56,6 +57,14 @@ public class YadoroidResults extends AbstractYadoroid {
 		}
 	}
 	public void onRequestComplete() {
+		if(hotelSearch.total==0) {
+			alert(new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int whichButton) {
+					init();
+				}
+			},R.string.no_result,R.string.no_result_title,R.string.retry);
+			return;
+		}
 		adapter = new HotelListAdapter(YadoroidResults.this,hotelSearch);
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

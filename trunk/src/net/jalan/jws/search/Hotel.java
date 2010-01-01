@@ -93,8 +93,13 @@ public class Hotel {
 				checkInTime = getStrValue(n);
 			else if(nm.equals("CheckOutTime"))
 				checkOutTime = getStrValue(n);
-			else if(nm.equals("X")&&getStrValue(n)!="")
-				latlng = new LatLong(new Integer(getStrValue(n)),new Integer(getStrValue(n.getNextSibling())));
+			else if(nm.equals("X")&&getStrValue(n)!="") {
+				String strx = getStrValue(n);
+				String stry = getStrValue(n.getNextSibling());
+				if(strx=="") strx = "0";
+				if(stry=="") stry = "0";
+				latlng = new LatLong(new Integer(strx),new Integer(stry));
+			}
 			else if(nm.equals("SampleRateFrom"))
 				sampleRateFrom = getIntValue(n);
 			else if(nm.equals("NumberOfRatings"))

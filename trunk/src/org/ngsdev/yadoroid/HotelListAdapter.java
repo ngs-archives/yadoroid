@@ -58,7 +58,7 @@ public class HotelListAdapter extends BaseAdapter {
 			catchCopy.setText(ccp);
 		else
 			catchCopy.setVisibility(View.GONE);
-		if(h.pictures.size()>0) h.pictures.get(0).load(hotelImage);
+		if(h.pictures.size()>0) h.pictures.get(0).loadAsync(hotelImage);
 		return v;
 	}
 	public Hotel getItem(int position) {

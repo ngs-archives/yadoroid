@@ -7,8 +7,13 @@ public class AccessInformation {
 	public String text;
 	static public final String NAME = "name";
 	public AccessInformation(Node xml) {
+		Node n;
 		NamedNodeMap atr = xml.getAttributes();
-		name = atr.getNamedItem(NAME).getNodeValue();
-		text = xml.getFirstChild().getNodeValue();
+		if(atr != null) {
+			n = atr.getNamedItem(NAME);
+			name = n != null ? n.getNodeValue() : "";
+		}
+		n = xml.getFirstChild();
+		text = n != null ? n.getNodeValue() : "";
 	}
 }
