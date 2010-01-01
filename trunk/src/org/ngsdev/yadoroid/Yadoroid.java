@@ -28,6 +28,7 @@ public class Yadoroid extends AbstractYadoroid {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.areas);
 		list = (ListView) findViewById(R.id.list_view);
+		trackPageView("/");
 		if(currentArea!=null) {
 			log("onCreate"+currentArea.name);
 			activeArea = currentArea;
@@ -42,6 +43,7 @@ public class Yadoroid extends AbstractYadoroid {
 	}
 	public void onResume() {
 		super.onResume();
+		trackPageView("/");
 		if(activeArea!=null) {
 			currentArea = activeArea;
 			setTitle((!currentArea.type.equals(Area.AREA)?currentArea.name+" | ":"")+getString(R.string.select_area));
