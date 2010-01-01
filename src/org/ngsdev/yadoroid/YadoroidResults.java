@@ -43,6 +43,10 @@ public class YadoroidResults extends AbstractYadoroid {
 		}
 		init(R.string.progress_hotelapi);
 	}
+	public void onResume() {
+		super.onResume();
+		this.trackPageView("/list/"+areaName+"/"+Integer.toString(start));
+	}
 	public void doRequest() throws Exception {
 		try {
 			hotelSearch = new HotelSearch(true);

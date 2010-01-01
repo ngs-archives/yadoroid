@@ -32,6 +32,7 @@ public class YadoroidDetail extends AbstractYadoroid {
 	public HotelSearchOptions searchOptions;
 	public String hotelID;
 	public TextView hotelName;
+	public String hotelNameString;
 	public TextView minPrice;
 	public TextView catchCopy;
 	public Gallery hotelImageGallery;
@@ -48,6 +49,7 @@ public class YadoroidDetail extends AbstractYadoroid {
 		Bundle extras = getIntent().getExtras();
 		hotelID = extras==null?"":extras.getString(EXTRA_KEY_HOTEL_ID);
 		String name = extras==null?"":extras.getString(EXTRA_KEY_HOTEL_NAME);
+		hotelNameString = name;
 		if(name!="") {
 			setTitle(name+" | "+getString(R.string.hotel_detail));
 		}
@@ -66,6 +68,10 @@ public class YadoroidDetail extends AbstractYadoroid {
 		mapButton = (Button) findViewById(R.id.map_button);
 		setText(hotelName,name);
 		init(R.string.progress_hoteldetail);
+	}
+	public void onResume() {
+		super.onResume();
+		this.trackPageView("/detail/"+hotelNameString+"/");
 	}
 	public void doRequest() throws Exception {
 		try {
@@ -154,12 +160,14 @@ public class YadoroidDetail extends AbstractYadoroid {
 	}
 	public void goReserve() {
 		try {
+    		this.trackEvent("Detail","goReserve");
 			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(hotel.url.toString()));
 			startActivity(intent);
 		} catch(Exception e) {}
 	}
 	public void showMap() {
 		try {
+    		this.trackEvent("Detail","showMap");
     		final Intent intent = new Intent(YadoroidDetail.this,org.ngsdev.yadoroid.YadoroidMap.class);
     		final Bundle extras = new Bundle();
     		extras.putDouble(EXTRA_KEY_HOTEL_LAT,hotel.latlng.lat);
