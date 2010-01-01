@@ -30,15 +30,15 @@ abstract public class AbstractYadoroid extends Activity {
 	private ProgressDialog progressDialog;
 	private AlertDialog alertDialog;
 	private int progressMessage;
-	private static String trackingPath = "/";
+	public String trackingPath = "";
 	public void onCreate(Bundle savedInstanceState) {
 		log("onCreate");
+		APIRequest.apiKey = APIKEY;
+		super.onCreate(savedInstanceState);
 		if(tracker==null) {
 			tracker = GoogleAnalyticsTracker.getInstance();
 			tracker.start(GAID, this);
 		}
-		APIRequest.apiKey = APIKEY;
-		super.onCreate(savedInstanceState);
 	}
 	public void onResume() {
 		log("onResume");
@@ -79,15 +79,15 @@ abstract public class AbstractYadoroid extends Activity {
 		Log.v(TAG,text);
 	}
 
-	public static void trackEvent(String category,String event) {
+	public void trackEvent(String category,String event) {
 		log(event);
-		tracker.trackEvent(category,event,trackingPath);
+		tracker.trackEvent(category,event,trackingPath,1);
 	}
 
-	public static void trackPageView(String path) {
-		log(path);
-		trackingPath = path;
-		tracker.trackPageView(path);
+	public void trackPageView(String path) {
+		trackingPath = trackingPath == "" ? path : trackingPath;
+		log(trackingPath);
+		tracker.trackPageView(trackingPath);
 	}
 	
 	public Boolean isNetworkAvailable() {
