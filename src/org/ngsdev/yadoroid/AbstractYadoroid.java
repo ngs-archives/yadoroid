@@ -80,10 +80,12 @@ abstract public class AbstractYadoroid extends Activity {
 	}
 
 	public static void trackEvent(String category,String event) {
+		log(event);
 		tracker.trackEvent(category,event,trackingPath);
 	}
 
 	public static void trackPageView(String path) {
+		log(path);
 		trackingPath = path;
 		tracker.trackPageView(path);
 	}
