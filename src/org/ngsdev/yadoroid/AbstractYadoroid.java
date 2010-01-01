@@ -14,21 +14,29 @@ import android.os.Handler;
 import android.util.Log;
 import net.jalan.jws.search.Area;
 import net.jalan.jws.search.APIRequest;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 abstract public class AbstractYadoroid extends Activity {
+	public static GoogleAnalyticsTracker tracker = null;
 	public static final String APIKEY = "leo11111317351";
+	public static final String GAID = "UA-200187-17";
 	private static final String TAG = "Yadoroid";
 	public static final String EXTRA_KEY_SAREA_CODE = "sarea.code";
 	public static final String EXTRA_KEY_SAREA_NAME = "sarea.name";
-	public static final String EXTRA_KEY_HOTEL_ID   = "hotel.code";
+	public static final String EXTRA_KEY_HOTEL_ID	 = "hotel.code";
 	public static final String EXTRA_KEY_HOTEL_NAME = "hotel.name";
-	public static final String EXTRA_KEY_HOTEL_LAT  = "hotel.lat";
-	public static final String EXTRA_KEY_HOTEL_LNG  = "hotel.lng";
+	public static final String EXTRA_KEY_HOTEL_LAT	 = "hotel.lat";
+	public static final String EXTRA_KEY_HOTEL_LNG	 = "hotel.lng";
 	public static final String EXTRA_KEY_START = "start";
 	private ProgressDialog progressDialog;
 	private AlertDialog alertDialog;
 	private int progressMessage;
+	private static String trackingPath = "/";
 	public void onCreate(Bundle savedInstanceState) {
 		log("onCreate");
+		if(tracker==null) {
+			tracker = GoogleAnalyticsTracker.getInstance();
+			tracker.start(GAID, this);
+		}
 		APIRequest.apiKey = APIKEY;
 		super.onCreate(savedInstanceState);
 	}
@@ -69,6 +77,15 @@ abstract public class AbstractYadoroid extends Activity {
 
 	public static void log(String text) {
 		Log.v(TAG,text);
+	}
+
+	public static void trackEvent(String category,String event) {
+		tracker.trackEvent(category,event,trackingPath);
+	}
+
+	public static void trackPageView(String path) {
+		trackingPath = path;
+		tracker.trackPageView(path);
 	}
 	
 	public Boolean isNetworkAvailable() {
