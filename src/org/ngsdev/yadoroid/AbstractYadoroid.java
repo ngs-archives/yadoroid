@@ -82,12 +82,14 @@ abstract public class AbstractYadoroid extends Activity {
 	public void trackEvent(String category,String event) {
 		log(event);
 		tracker.trackEvent(category,event,trackingPath,1);
+		tracker.dispatch();
 	}
 
 	public void trackPageView(String path) {
 		trackingPath = trackingPath == "" ? path : trackingPath;
 		log(trackingPath);
 		tracker.trackPageView(trackingPath);
+		tracker.dispatch();
 	}
 	
 	public Boolean isNetworkAvailable() {
