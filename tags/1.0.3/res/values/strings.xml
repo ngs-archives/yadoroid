@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Yadoroid</string>
+	<string name="select_area">Areas</string>
+	<string name="list">Hotels</string>
+	<string name="hotel_detail">Detail</string>
+	<string name="hotel_map">Map</string>
+	<string name="back">Back</string>
+	<string name="progress_connect">Requesting</string>
+	<string name="progress_areaapi">Fetching Area List</string>
+	<string name="progress_hotelapi">Searching Hotels</string>
+	<string name="alert_connection">Connection Error</string>
+	<string name="alert_message">Connection Error has occured</string>
+	<string name="alert_outofservice">No Network found</string>
+	<string name="retry">Retry</string>
+	<string name="min_price">%sJPY~</string>
+	<string name="progress_hoteldetail">Requesting Detail Information</string>
+	<string name="cancel">Cancel</string>
+	<string name="access">Access</string>
+	<string name="checkin_time">Check In</string>
+	<string name="checkout_time">Check Out</string>
+	<string name="creditcard">Credit Card</string>
+	<string name="sample_rate_from">Lowest price</string>
+	<string name="kuchikomi_rating">Rated</string>
+	<string name="meal">Meal</string>
+	<string name="address">Address</string>
+	<string name="postal_mark">#</string>
+	<string name="go_reserve">Reserve this %s</string>
+	<string name="yado">Hotel</string>
+	<string name="next_button">Next %s</string>
+	<string name="prev_button">Prev %s</string>
+	<string name="no_result_title"></string>
+	<string name="no_result">No result found.</string>
+	<string name="map">View map</string>
+</resources>
